@@ -2,10 +2,12 @@
 	import Folder from '$lib/elements/Folder.svelte';
 	import project from '$lib/project';
 
+	$: base64 = JSON.stringify($project);
+
 	async function handleSubmit() {
 		// Submit to API
 		const file = await fetch('./api', {
-			method: 'POST',
+			method: 'GET',
 			body: JSON.stringify($project),
 			headers: {
 				'Content-Type': 'application/json',
@@ -14,10 +16,14 @@
 		}).then((res) => res.blob());
 
 		// Trigger download
+		//const fileHandle = await window.showSaveFilePicker();
+		/*
 		const a = document.createElement('a');
 		a.href = window.URL.createObjectURL(file);
 		a.download = $project.name + '.zip';
 		a.click();
+
+		*/
 	}
 </script>
 
@@ -59,6 +65,8 @@
 	<hr />
 
 	<button type="Submit">Download</button>
+
+	<a href="./api?data={base64}" download="{$project.name}.zip">Download</a>
 </form>
 
 <style>

@@ -1,9 +1,13 @@
 import JSZip from 'jszip';
 import hooksContent from '$lib/content/hooks';
 import buildFolder from '$lib/builders/buildFolder';
+import type { RequestHandler } from '@sveltejs/kit';
+import type { RequestEvent } from '@sveltejs/kit/types/internal';
 
-export async function post({ request }) {
-    const data : App.Project = await request.json();
+export async function get({ url } : RequestEvent) {
+    const data : App.Project = JSON.parse(url.searchParams.get('data'))
+
+    //const data : App.Project = await request.json();
     const zip = new JSZip();
 
     if (data.hooks) {
