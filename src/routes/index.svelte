@@ -4,18 +4,19 @@
 
 	async function handleSubmit() {
 		// Submit to API
-		const file = await fetch('./api', {
+		const chunks = await fetch('./api', {
 			method: 'POST',
 			body: JSON.stringify($project),
 			headers: {
 				'Content-Type': 'application/json',
 				accept: 'application/zip'
 			}
-		}).then((res) => res.blob());
+		}).then((res) => res.arrayBuffer());
+		const blob = new Blob([chunks], { type: 'application/zip' });
 
 		// Trigger download
 		const a = document.createElement('a');
-		a.href = window.URL.createObjectURL(file);
+		a.href = window.URL.createObjectURL(blob);
 		a.download = $project.name + '.zip';
 		a.click();
 	}
