@@ -10,11 +10,16 @@
 			headers: {
 				'Content-Type': 'application/json'
 			}
-		}).then((res) => res.blob());
+		}).then((res) => {
+			console.log(res.type);
+			return res.blob();
+		});
 
 		// Trigger download
 		const a = document.createElement('a');
-		a.href = window.URL.createObjectURL(file);
+		const blob = new Blob([file], { type: 'application/zip' });
+
+		a.href = window.URL.createObjectURL(blob);
 		a.download = $project.name + '.zip';
 		a.click();
 	}
