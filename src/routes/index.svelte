@@ -1,13 +1,11 @@
 <script lang="ts">
+	import buildZip from '$lib/builders/buildZip';
+
 	import Folder from '$lib/elements/Folder.svelte';
 	import project from '$lib/project';
-	import { post } from './api';
 
 	async function handleSubmit() {
-		const blob = await post($project);
-		//const blob = new Blob([file], { type: 'application/zip' });
-
-		// Trigger download
+		const blob = await buildZip($project);
 		const a = document.createElement('a');
 		a.href = window.URL.createObjectURL(blob);
 		a.download = $project.name + '.zip';
