@@ -4,7 +4,7 @@ import hooksContent from '$lib/content/hooks';
 import buildFolder from '$lib/builders/buildFolder';
 
 export async function post({ request }) {
-    const data : App.Project = await request.json();
+    const data: App.Project = await request.json();
     const zip = new JSZip();
 
     if (data.hooks) {
@@ -13,8 +13,8 @@ export async function post({ request }) {
 
     buildFolder(data.routes, zip, [])
 
-    const file = await zip.generateAsync({ 
-        type: 'arraybuffer',
+    const file = await zip.generateAsync({
+        type: 'nodebuffer',
         compression: 'DEFLATE',
         compressionOptions: {
             level: 9
