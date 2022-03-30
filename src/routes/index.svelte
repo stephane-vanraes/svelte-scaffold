@@ -5,7 +5,7 @@
 	async function handleSubmit() {
 		// Submit to API
 		const file = await fetch('./api', {
-			method: 'GET',
+			method: 'POST',
 			body: JSON.stringify($project),
 			headers: {
 				'Content-Type': 'application/json',
