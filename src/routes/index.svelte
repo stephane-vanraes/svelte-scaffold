@@ -8,18 +8,16 @@
 			method: 'POST',
 			body: JSON.stringify($project),
 			headers: {
-				'Content-Type': 'application/json'
+				'Content-Type': 'application/json',
+				accept: 'application/zip'
 			}
-		}).then((res) => {
-			console.log(res.type);
-			return res.blob();
-		});
+		}).then((res) => res.blob());
+
+		console.log(file);
 
 		// Trigger download
 		const a = document.createElement('a');
-		const blob = new Blob([file], { type: 'application/zip' });
-
-		a.href = window.URL.createObjectURL(blob);
+		a.href = window.URL.createObjectURL(file);
 		a.download = $project.name + '.zip';
 		a.click();
 	}
