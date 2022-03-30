@@ -31,22 +31,3 @@
 		<Checkbox bind:value={methods.del} label="DEL" />
 	</div>
 </div>
-
-<style>
-	div {
-		background-color: var(--indigo-1);
-		border: 1px solid var(--indigo-3);
-		display: flex;
-		flex-direction: column;
-		gap: 0.5rem;
-		padding: 0.5rem 1rem;
-		position: relative;
-	}
-
-	div > div {
-		align-items: center;
-		border: none;
-		flex-direction: row;
-		padding: 0;
-	}
-</style>

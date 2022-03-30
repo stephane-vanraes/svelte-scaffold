@@ -1,13 +1,5 @@
 :root {
-	--container-width: 65ch;
-
-	--font-size-1: 1rem;
-	--font-size-2: 1.25rem;
-	--font-size-3: 1.5rem;
-
-	--font-weight-1: 400;
-	--font-weight-2: 500;
-	--font-weight-3: 600;
+	--container-width: 80ch;
 
 	--teal-1: #63e6be;
 	--teal-3: #20c997;
@@ -21,9 +13,9 @@
 	--indigo-2: #5c7cfa;
 	--indigo-3: #4263eb;
 
-	--gray-1: #444;
+	--gray-1: #aaa;
 	--gray-2: #777;
-	--gray-3: #aaa;
+	--gray-3: #444;
 }
 
 *,
@@ -34,13 +26,14 @@
 	font: inherit;
 	margin: 0;
 	padding: 0;
+	transition: all 200ms linear;
 }
 
 html {
 	height: 100%;
 }
 body {
-	background-color: var(--gray-3);
+	background-color: var(--teal-1);
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
@@ -48,8 +41,113 @@ body {
 }
 
 main {
+	display: flex;
 	flex: 1 0;
+	flex-direction: column;
+	gap: 1rem;
 	margin: auto;
 	max-width: var(--container-width);
+	padding: 1rem;
 	width: 100%;
+}
+
+h1 {
+	font-size: 1.5rem;
+	font-weight: 600;
+	text-align: center;
+}
+
+h2 {
+	font-size: 1.25rem;
+	font-weight: 600;
+}
+
+em {
+	font-weight: 600;
+}
+
+hr {
+	background-color: var(--gray-1);
+	border: 0;
+	height: 2px;
+}
+
+input[type='text'] {
+	background-color: transparent;
+	border-color: black;
+	border-style: dotted;
+	border-width: 0 0 1px 0;
+	padding: 0.25rem 0.5rem;
+	width: 100%;
+}
+
+input[type='text']:invalid {
+	border-color: red;
+	border-style: solid;
+}
+
+input[type='checkbox'] {
+	position: fixed;
+	top: -100vh;
+}
+
+input[type='checkbox'] + span {
+	display: flex;
+	gap: 0.5ch;
+}
+
+input[type='checkbox'] + span:before {
+	background-color: white;
+	border: 1px solid black;
+	border-radius: 2px;
+	content: '';
+	display: grid;
+	font-size: 0.75rem;
+	font-weight: 600;
+	height: 1rem;
+	place-items: center;
+	width: 1rem;
+}
+
+input[type='checkbox']:checked + span:before {
+	content: '\2713';
+}
+
+input[type='checkbox'].toggle + span:before {
+	display: none;
+}
+
+input[type='checkbox'].toggle + span {
+	border-radius: 4px;
+	font-size: 0.75rem;
+	padding: 0.25rem 0.5rem;
+	white-space: nowrap;
+}
+
+input[type='checkbox'].toggle:checked + span {
+	background-color: var(--indigo-2);
+	color: white;
+}
+
+input[type='checkbox'].collapse + svg {
+	font-size: 0.75rem;
+	transform: rotate(90deg);
+	transform-origin: center;
+	pointer-events: all;
+}
+
+input[type='checkbox'].collapse:checked + svg {
+	transform: rotate(0deg);
+}
+
+button.delete {
+	background-color: transparent;
+	border: 0;
+	border-bottom: 2px solid transparent;
+	font-size: 0.5rem;
+}
+
+button.delete:is(:active, :focus, :hover) {
+	color: red;
+	border-bottom-color: red;
 }
