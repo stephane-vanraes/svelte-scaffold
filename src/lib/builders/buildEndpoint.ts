@@ -2,7 +2,7 @@ import type JSZip from 'jszip';
 
 import * as endpointContent from '$lib/content/endpoint';
 
-function buildEndpoint(endpoint: App.Endpoint, zip: JSZip, folderparams: Array<string>) {
+function buildEndpoint(endpoint: App.Endpoint, zip: JSZip, folderparams: Array<string>, typescript : boolean) {
 	let params: Array<string> = [...endpoint.name.matchAll(/\[[a-zA-Z]*\]/gm)].map((m) =>
 		m[0].replace('[', '').replace(']', '')
 	);
@@ -11,7 +11,7 @@ function buildEndpoint(endpoint: App.Endpoint, zip: JSZip, folderparams: Array<s
 
 	let content = '';
 
-	if (folderparams.length > 0) {
+	if (params.length > 0) {
 		if (endpoint.methods.get) content += endpointContent.GETParams;
 		if (endpoint.methods.patch) content += endpointContent.PATCHParams;
 		if (endpoint.methods.post) content += endpointContent.POSTParams;
@@ -27,7 +27,7 @@ function buildEndpoint(endpoint: App.Endpoint, zip: JSZip, folderparams: Array<s
 
 	content = content.replace(/REPLACE/gm, params.join(','));
 
-	zip.file(endpoint.name + '.js', content);
+	zip.file(endpoint.name + (typescript ? '.ts' : '.js'), content);
 }
 
 export default buildEndpoint;

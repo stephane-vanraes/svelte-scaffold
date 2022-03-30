@@ -13,3 +13,7 @@ export function splitChildren(arr: Array<App.Element>): {
 		pages
 	};
 }
+
+export function typescriptify(source) {
+	return source.replace('<script>', '<script lang="ts">')
+}

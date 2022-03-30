@@ -2,6 +2,7 @@ import { writable } from 'svelte/store';
 
 const project = (() => {
 	const store = writable<App.Project>({
+		css: false,
 		name: '',
 		hooks: false,
 		routes: {
@@ -15,7 +16,8 @@ const project = (() => {
 			layout: false,
 			name: '',
 			type: 'folder'
-		}
+		},
+		typescript: false
 	});
 
 	const addEndpoint = (children) => [

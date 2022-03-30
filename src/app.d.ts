@@ -33,5 +33,7 @@ declare namespace App {
 		name: string;
 		routes: Folder;
 		hooks?: boolean;
+		css?: boolean;
+		typescript?: boolean
 	}
 }
