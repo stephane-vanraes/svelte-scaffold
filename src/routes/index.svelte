@@ -13,8 +13,6 @@
 			}
 		}).then((res) => res.blob());
 
-		console.log(file);
-
 		// Trigger download
 		const a = document.createElement('a');
 		a.href = window.URL.createObjectURL(file);

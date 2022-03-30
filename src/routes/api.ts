@@ -15,10 +15,7 @@ export async function post({ request }) {
 
     const file = await zip.generateAsync({
         type: 'nodebuffer',
-        compression: 'DEFLATE',
-        compressionOptions: {
-            level: 9
-        }
+        compression: 'STORE',
     })
 
     return {
