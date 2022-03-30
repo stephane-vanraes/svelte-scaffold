@@ -3,6 +3,7 @@ import hooksContent from '$lib/content/hooks';
 import cssContent from '$lib/content/appcss';
 import { withCss } from '$lib/content/layout';
 import buildFolder from '$lib/builders/buildFolder';
+import { typescriptify } from '$lib/utils';
 
 export default async function (project: App.Project): Promise<Blob> {
 	const zip = new JSZip();
@@ -15,7 +16,7 @@ export default async function (project: App.Project): Promise<Blob> {
 
 	if (project.css) {
 		zip.file('app.css', cssContent)
-		routeFolder.file('__layout.svelte', withCss);
+		routeFolder.file('__layout.svelte', project.typescript ? typescriptify(withCss) : withCss);
 	}
 
 	const file = await zip.generateAsync({

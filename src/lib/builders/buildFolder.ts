@@ -1,4 +1,4 @@
-import { splitChildren } from '$lib/utils';
+import { splitChildren, typescriptify } from '$lib/utils';
 import type JSZip from 'jszip';
 import error from '../content/error';
 import { plain, withCss } from '../content/layout';
@@ -14,8 +14,8 @@ function buildFolder(folder: App.Folder, zip: JSZip, folderparams: Array<string>
 
 	zip = folder.name.length > 0 ? zip.folder(folder.name) : zip;
 
-	folder.error && zip.file('__error.svelte', error);
-	folder.layout && zip.file('__layout.svelte', plain);
+	folder.error && zip.file('__error.svelte', typescript ? typescriptify(error) : error);
+	folder.layout && zip.file('__layout.svelte', typescript ? typescriptify(plain) : plain);
 
 	const { endpoints, folders, pages } = splitChildren(folder.children);
 
