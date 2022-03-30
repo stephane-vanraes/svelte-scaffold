@@ -24,7 +24,10 @@ export async function post({ request }) {
         status: 200,
         body: file,
         headers: {
-            "Content-Type": "application/zip"
+            "Content-Type": "application/zip",
+            "Connection": "keep-alive",
+            "Keep-Alive": "timeout=5",
+            "Transfer-Encoding": "chunked"
         }
     }
 
