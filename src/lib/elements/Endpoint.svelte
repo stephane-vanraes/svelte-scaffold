@@ -4,7 +4,7 @@
 	import Checkbox from '../Checkbox.svelte';
 	import InputField from '../InputField.svelte';
 
-	export let name: string = '';
+	export let name = '';
 	export let methods: App.EndpointMethods = {};
 
 	$: console.log(methods);

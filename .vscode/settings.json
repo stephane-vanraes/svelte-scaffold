@@ -1,7 +1,5 @@
 {
-    "cssvar.files": [
-        "./src/app.css"
-    ],
-    "cssvar.disableSort": true,
-    "cssvar.extensions": [".css", ".svelte", ".ts", ".js"]
+	"cssvar.files": ["./src/app.css"],
+	"cssvar.disableSort": true,
+	"cssvar.extensions": [".css", ".svelte", ".ts", ".js"]
 }

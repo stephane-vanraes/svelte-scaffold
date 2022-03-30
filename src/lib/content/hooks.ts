@@ -9,4 +9,4 @@ export async function handle({ event, resolve }) {
 export async function getSession(event) {
     return event.locals;
 }
-`
+`;

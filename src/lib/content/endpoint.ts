@@ -84,7 +84,7 @@ export async function patch({ params }) {
     }
 }
 
-`
+`;
 
 export const DEL = `
 export async function del() {
@@ -106,4 +106,4 @@ export async function del({ params }) {
     }
 }
 
-`
+`;
