@@ -4,6 +4,10 @@
 	import Icon from '$lib/Icon.svelte';
 </script>
 
+<svelte:head>
+	<title>Svelte Scaffold</title>
+</svelte:head>
+
 <main>
 	<slot />
 </main>

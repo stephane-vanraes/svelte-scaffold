@@ -117,7 +117,12 @@ input[type='checkbox'].toggle + span:before {
 	display: none;
 }
 
+input[type='checkbox'].toggle:is(:active, :focus, :hover) + span {
+	border-color: var(--indigo-2);
+}
+
 input[type='checkbox'].toggle + span {
+	border: 2px solid transparent;
 	border-radius: 4px;
 	font-size: 0.75rem;
 	padding: 0.25rem 0.5rem;

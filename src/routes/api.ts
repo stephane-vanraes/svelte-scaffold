@@ -14,7 +14,7 @@ export async function post({ request }) {
     buildFolder(data.routes, zip, [])
 
     const file = await zip.generateAsync({ 
-        type: 'nodebuffer',
+        type: 'arraybuffer',
         compression: 'DEFLATE',
         compressionOptions: {
             level: 9
