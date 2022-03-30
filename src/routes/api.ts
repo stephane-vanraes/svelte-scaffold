@@ -2,8 +2,8 @@ import JSZip from 'jszip';
 import hooksContent from '$lib/content/hooks';
 import buildFolder from '$lib/builders/buildFolder';
 
-export async function post({ request }) {
-    const data : App.Project = await request.json();
+export async function post(data) {
+    //const data : App.Project = await request.json();
     const zip = new JSZip();
 
     if (data.hooks) {
@@ -13,21 +13,20 @@ export async function post({ request }) {
     buildFolder(data.routes, zip, [])
 
     const file = await zip.generateAsync({ 
-        type: 'nodebuffer',
+        type: 'blob',
         compression: 'DEFLATE',
         compressionOptions: {
             level: 9
         }
     })
 
+    return file
+
     return {
         status: 200,
         body: file,
         headers: {
-            "Content-Type": "application/zip",
-            "Connection": "keep-alive",
-            "Keep-Alive": "timeout=5",
-            "Transfer-Encoding": "chunked"
+            "Content-Type": "application/zip"
         }
     }
 

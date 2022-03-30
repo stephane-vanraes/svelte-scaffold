@@ -1,18 +1,11 @@
 <script lang="ts">
 	import Folder from '$lib/elements/Folder.svelte';
 	import project from '$lib/project';
+	import { post } from './api';
 
 	async function handleSubmit() {
-		// Submit to API
-		const chunks = await fetch('./api', {
-			method: 'POST',
-			body: JSON.stringify($project),
-			headers: {
-				'Content-Type': 'application/json',
-				accept: 'application/zip'
-			}
-		}).then((res) => res.arrayBuffer());
-		const blob = new Blob([chunks], { type: 'application/zip' });
+		const blob = await post($project);
+		//const blob = new Blob([file], { type: 'application/zip' });
 
 		// Trigger download
 		const a = document.createElement('a');
